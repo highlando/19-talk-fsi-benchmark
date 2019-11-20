@@ -40,9 +40,9 @@
 <h2>What is a Benchmark</h2>
 <p>I haven't found a clear definition of what a benchmark is. <!-- (maybe in contrast to a *numerical example*). --> However, here is what I think makes a <em>numerical example</em> a benchmark</p>
 <ol type="1">
-<li><strong>common acceptance as a benchmark</strong> -- there are other publications that discuss the same setup</li>
-<li><strong>practical relevance</strong> -- either in applications or as a testing field for numerical algorithms</li>
-<li><strong>reliable reference data</strong> -- so that others can test their codes and methods against it</li>
+<li><strong>Common acceptance as a benchmark</strong> -- there are other publications that discuss the same setup.</li>
+<li><strong>Practical relevance</strong> -- either in applications or as a testing field for numerical algorithms.</li>
+<li><strong>Reliable reference data</strong> -- so that others can test their codes and methods against it.</li>
 </ol>
 </section><section id="what-is-a-benchmark-1" class="slide level2">
 <h2>What is a Benchmark</h2>
@@ -57,8 +57,8 @@
 </blockquote>
 <p>Examples:</p>
 <ul>
-<li>MOR Benchmark Collection</li>
-<li>Dongarra</li>
+<li><a href="https://morwiki.mpi-magdeburg.mpg.de/morwiki/index.php/Main_Page">MOR Benchmark Collection</a></li>
+<li><a href="https://en.wikipedia.org/wiki/LINPACK_benchmarks">LINPACK Benchmark</a></li>
 </ul>
 </section><section id="why-benchmarks-1" class="slide level2">
 <h2>Why Benchmarks</h2>
@@ -74,7 +74,7 @@
 </section><section id="fluid-structure-interaction" class="slide level2">
 <h2>Fluid Structure Interaction</h2>
 <figure>
-<img src="pics/fsi2.gif" alt="Example of a Cylinder with a Tail" /><figcaption>Example of a Cylinder with a Tail</figcaption>
+<img src="pics/fsi2.gif" alt="Example of a cylinder with a tail" /><figcaption>Example of a cylinder with a tail</figcaption>
 </figure>
 <ul>
 <li>Changing domain.</li>
@@ -115,7 +115,7 @@
 
 <h3 id="the-flow">The flow</h3>
 <span class="math display">\[\begin{equation*}
-        \rho_f\left(\partial_t v + (v \cdot\nabla)v \right) - \nabla \cdot \sigma(v ,p) = 0, \quad \nabla\cdot v  = 0
+        \rho_f\left(\partial_t v + (v \cdot\nabla)v \right) - \nabla \cdot \sigma(v ,p) = 0, \quad \nabla\cdot v  = 0,
 \end{equation*}\]</span>
 with the stress-tensor
 <span class="math display">\[\begin{equation*}
@@ -123,7 +123,7 @@ with the stress-tensor
 \end{equation*}\]</span>
 and with standard boundary conditions and in particular
 <span class="math display">\[\begin{equation*}
-    v = v_s \quad \text{on } \mathcal I
+    v = v_s, \quad \text{on } \mathcal I,
 \end{equation*}\]</span>
 <p>where <span class="math inline">\(v_s\)</span> is the solid's velocity at the fluid-solid interface.</p>
 </section><section class="slide level2">
@@ -142,7 +142,7 @@ where <span class="math inline">\(J\)</span> is the body's moment of inertia and
 <h2>Setups</h2>
 <ul>
 <li>2D and 3D</li>
-<li>stationary -- where <span class="math inline">\(\mathbf T=0\)</span> (low <em>Re</em>-number)</li>
+<li>stationary -- where there is no torque (low <em>Re</em>-number)</li>
 <li>periodic -- a limit cycle (moderate <em>Re</em>-number)</li>
 <li>time dependent -- a start-up period</li>
 </ul>
@@ -152,8 +152,8 @@ where <span class="math inline">\(J\)</span> is the body's moment of inertia and
 <table>
 <thead>
 <tr class="header">
-<th>variable</th>
-<th>definition</th>
+<th>Variable</th>
+<th>Definition</th>
 </tr>
 </thead>
 <tbody>
@@ -193,7 +193,7 @@ where <span class="math inline">\(J\)</span> is the body's moment of inertia and
 <h2>Code Base</h2>
 <p>There were 5 independent implementations using established libraries:</p>
 <ul>
-<li>Netgen/NGSolve</li>
+<li><a href="https://ngsolve.org/">Netgen/NGSolve</a></li>
 <li><a href="https://fenicsproject.org/download/">FEniCS/dolfin</a></li>
 <li>Gascoigne</li>
 <li><a href="https://www.scipy.org">SciPy</a></li>
@@ -202,7 +202,9 @@ where <span class="math inline">\(J\)</span> is the body's moment of inertia and
 <h2>Algorithms</h2>
 <ul>
 <li>High-order and standard <em>Taylor-Hood</em> elements</li>
-<li>High-order <em>divergence</em> free elements</li>
+<li><em>inf-sup</em> stable and stabilized equal order elements</li>
+<li>High-order <em>divergence</em> free and <span class="math inline">\(H^1\)</span> conforming elements</li>
+<li>Hybrid Discontinous Galerkin methods</li>
 <li>Implicit/Explicit time integration<br />
 </li>
 <li>Most critical: Evaluation of the boundary integrals</li>
@@ -213,9 +215,9 @@ where <span class="math inline">\(J\)</span> is the body's moment of inertia and
 <table>
 <thead>
 <tr class="header">
-<th>test case</th>
-<th>relative size of <span class="math inline">\(\Delta_I\)</span></th>
-<th>critical value</th>
+<th>Test case</th>
+<th>Relative size of <span class="math inline">\(\Delta_I\)</span></th>
+<th>Critical value</th>
 </tr>
 </thead>
 <tbody>
@@ -251,11 +253,11 @@ where <span class="math inline">\(J\)</span> is the body's moment of inertia and
 <section><section id="conclusion" class="titleslide slide level1"><h1>Conclusion</h1></section><section id="conclusion-1" class="slide level2">
 <h2>Conclusion</h2>
 <ul>
-<li><p>Benchmarks are valuable for the assessment of numerical models</p></li>
+<li><p>Benchmarks are valuable for the assessment of numerical models.</p></li>
 <li>The proposed benchmark may qualify as such because of
 <ul>
-<li>reliable data</li>
-<li>setup accessible to standard solvers</li>
+<li>reliable data,</li>
+<li>setup accessible to standard solvers.</li>
 </ul></li>
 <li><p>I learned: Numerical analysis matters.</p></li>
 </ul>
@@ -263,7 +265,7 @@ where <span class="math inline">\(J\)</span> is the body's moment of inertia and
 <h2>References</h2>
 <div id="refs" class="references">
 <div id="ref-WahRLHM19">
-<p>Wahl, Henry von, Thomas Richter, Christoph Lehrenfeld, Jan Heiland, and Piotr Minakowski. 2019. “Numerical Benchmarking of Fluid-Rigid Body Interactions.” <em>Computers &amp; Fluids</em>. doi:<a href="https://doi.org/10.1016/j.compfluid.2019.104290">10.1016/j.compfluid.2019.104290</a>.</p>
+<p>von Wahl, Henry, Thomas Richter, Christoph Lehrenfeld, Jan Heiland, and Piotr Minakowski. 2019. “Numerical Benchmarking of Fluid-Rigid Body Interactions.” <em>Computers &amp; Fluids</em>. doi:<a href="https://doi.org/10.1016/j.compfluid.2019.104290">10.1016/j.compfluid.2019.104290</a>.</p>
 </div>
 </div>
 </section></section>

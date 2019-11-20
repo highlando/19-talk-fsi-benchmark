@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Henry von Wahl &amp; Thomas Richter &amp; Jan Heiland">
+  <meta name="author" content="Christoph Lehrenfeld &amp; Piotr Minakowski">
+  <title>A benchmark for fluid rigid body interaction with standard CFD packages</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="https://revealjs.com/css/reveal.css">
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="https://revealjs.com/css/theme/solarized.css" id="theme">
+  <!-- Printing and PDF exports -->
+  <script>
+    var link = document.createElement( 'link' );
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'https://revealjs.com/css/print/pdf.css' : 'https://revealjs.com/css/print/paper.css';
+    document.getElementsByTagName( 'head' )[0].appendChild( link );
+  </script>
+  <!--[if lt IE 9]>
+  <script src="https://revealjs.com/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" type="text/javascript"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+  <h1 class="title">A benchmark for fluid rigid body interaction with standard CFD packages</h1>
+  <p class="author">Henry von Wahl &amp; Thomas Richter &amp; Jan Heiland</p>
+  <p class="author">Christoph Lehrenfeld &amp; Piotr Minakowski</p>
+  <p class="date">GAMM CSE -- 21 November 2019</p>
+</section>
+
+<section><section id="introduction" class="titleslide slide level1"><h1>Introduction</h1></section><section id="what-is-a-benchmark" class="slide level2">
+<h2>What is a Benchmark</h2>
+<p>I haven't found a clear definition of what a benchmark is. <!-- (maybe in contrast to a *numerical example*). --> However, here is what I think makes a <em>numerical example</em> a benchmark</p>
+<ol type="1">
+<li><strong>common acceptance as a benchmark</strong> -- there are other publications that discuss the same setup</li>
+<li><strong>practical relevance</strong> -- either in applications or as a testing field for numerical algorithms</li>
+<li><strong>reliable reference data</strong> -- so that others can test their codes and methods against it</li>
+</ol>
+</section><section id="what-is-a-benchmark-1" class="slide level2">
+<h2>What is a Benchmark</h2>
+<blockquote>
+<p>Basically, everything that would motivate a fellow researchers to use the provided setup and data to <em>benchmark</em> their code.</p>
+</blockquote>
+</section><section id="why-benchmarks" class="slide level2">
+<h2>Why Benchmarks</h2>
+<p>Quantitative assessments, evaluate performance:</p>
+<blockquote>
+<p>We know that this computation <em>correct</em>, but how <strong>efficient</strong> is it?</p>
+</blockquote>
+<p>Examples:</p>
+<ul>
+<li>MOR Benchmark Collection</li>
+<li>Dongarra</li>
+</ul>
+</section><section id="why-benchmarks-1" class="slide level2">
+<h2>Why Benchmarks</h2>
+<p>Qualitive assessments, evaluate confidence:</p>
+<blockquote>
+<p>Are the computations <strong>correct</strong>?</p>
+</blockquote>
+<p>Example: <a href="www.featflow.de/en/benchmarks/cfdbenchmarking/flow/">Flow Past a Cylinder</a> by Schäfer&amp;Turek</p>
+<p>Note that:</p>
+<blockquote>
+<p>The more complex the model is, the more necessary are benchmarks <strong>but</strong> the more difficult are benchmark definitions.</p>
+</blockquote>
+</section><section id="fluid-structure-interaction" class="slide level2">
+<h2>Fluid Structure Interaction</h2>
+<figure>
+<img src="pics/fsi2.gif" alt="Example of a Cylinder with a Tail" /><figcaption>Example of a Cylinder with a Tail</figcaption>
+</figure>
+<ul>
+<li>Changing domain.</li>
+<li>Coupling of Models (and scales).</li>
+</ul>
+</section><section id="our-benchmark" class="slide level2">
+<h2>Our Benchmark</h2>
+<figure>
+<img src="pics/benchmarksetup.png" alt="3D setup of the computational domain" /><figcaption>3D setup of the computational domain</figcaption>
+</figure>
+</section><section class="slide level2">
+
+<h3 id="a-freely-rotating-sphere-with-fixed-center">A freely rotating sphere with fixed center</h3>
+<ul>
+<li>The domain is fixed.</li>
+<li>Can concentrate on the coupling of the models.</li>
+<li>Accessible to standard CFD solvers.</li>
+</ul>
+</section><section class="slide level2">
+
+<h3 id="we-address-2.-and-3.-of-the-benchmark-criteria">We address (2.) and (3.) of the benchmark criteria</h3>
+<ul>
+<li>Relevant as a testing field for algorithms and</li>
+<li>reliable test data.</li>
+</ul>
+<blockquote>
+<p>(1.) General acceptance as a benchmark may come later.</p>
+</blockquote>
+</section></section>
+<section><section id="the-model" class="titleslide slide level1"><h1>The model</h1></section><section id="verbose" class="slide level2">
+<h2>Verbose</h2>
+<ul>
+<li>A fluid flows through a channel with a sphere that can rotate freely.</li>
+<li>The stresses at the sphere/fluid interface induce rotation.</li>
+<li>The <em>no-slip</em> condition induces motion of the flow at the interface.</li>
+</ul>
+</section><section class="slide level2">
+
+<h3 id="the-flow">The flow</h3>
+<span class="math display">\[\begin{equation*}
+        \rho_f\left(\partial_t v + (v \cdot\nabla)v \right) - \nabla \cdot \sigma(v ,p) = 0, \quad \nabla\cdot v  = 0
+\end{equation*}\]</span>
+with the stress-tensor
+<span class="math display">\[\begin{equation*}
+    \sigma (v,p) = \rho _ f\nu\left( \nabla v+\nabla v^T \right) - p I
+\end{equation*}\]</span>
+and with standard boundary conditions and in particular
+<span class="math display">\[\begin{equation*}
+    v = v_s \quad \text{on } \mathcal I
+\end{equation*}\]</span>
+<p>where <span class="math inline">\(v_s\)</span> is the solid's velocity at the fluid-solid interface.</p>
+</section><section class="slide level2">
+
+<h3 id="the-rigid-body">The rigid body</h3>
+<span class="math display">\[\begin{equation*}
+    J\partial_t\omega = \mathbf T 
+\end{equation*}\]</span>
+where <span class="math inline">\(J\)</span> is the body's moment of inertia and <span class="math inline">\(\mathbf T\)</span> is the total torque exerted onto the body by the fluid.
+<span class="math display">\[\begin{equation*}
+    \mathbf T = \int_{\mathcal I} (\mathbf x-\mathbf c)\times \left( \sigma( v,p )\mathbf n \right) ds
+\end{equation*}\]</span>
+<p>with the body's centre of mass <span class="math inline">\(\mathbf c\)</span>.</p>
+</section></section>
+<section><section id="test-cases" class="titleslide slide level1"><h1>Test Cases</h1></section><section id="setups" class="slide level2">
+<h2>Setups</h2>
+<ul>
+<li>2D and 3D</li>
+<li>stationary -- where <span class="math inline">\(\mathbf T=0\)</span> (low <em>Re</em>-number)</li>
+<li>periodic -- a limit cycle (moderate <em>Re</em>-number)</li>
+<li>time dependent -- a start-up period</li>
+</ul>
+</section><section id="characteristic-outputs" class="slide level2">
+<h2>Characteristic outputs</h2>
+<h3 id="for-the-stationary-case">for the stationary case</h3>
+<table>
+<thead>
+<tr class="header">
+<th>variable</th>
+<th>definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(C_L\)</span></td>
+<td>lift coefficient(s)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(C_D\)</span></td>
+<td>drag coefficient(s)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(C_T\)</span></td>
+<td>torque coefficient(s)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\Delta_p\)</span></td>
+<td>pressure difference at the cylinder</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\({\omega}^{ * }\)</span></td>
+<td>dimensionless rotation</td>
+</tr>
+</tbody>
+</table>
+</section><section class="slide level2">
+
+<h3 id="in-the-periodic-case">in the periodic case,</h3>
+<p>we used</p>
+<ul>
+<li>the <em>Strouhal number</em> to characterize the frequency</li>
+<li>minima, maxima of <span class="math inline">\(C_D\)</span>, <span class="math inline">\(C_L\)</span>, <span class="math inline">\(C_T\)</span>, and <span class="math inline">\(\omega^{ * }\)</span></li>
+<li>and <span class="math inline">\(\Delta_p(t^ * )\)</span> -- at the middle of a period.</li>
+</ul>
+</section></section>
+<section><section id="implementation" class="titleslide slide level1"><h1>Implementation</h1></section><section id="code-base" class="slide level2">
+<h2>Code Base</h2>
+<p>There were 5 independent implementations using established libraries:</p>
+<ul>
+<li>Netgen/NGSolve</li>
+<li><a href="https://fenicsproject.org/download/">FEniCS/dolfin</a></li>
+<li>Gascoigne</li>
+<li><a href="https://www.scipy.org">SciPy</a></li>
+</ul>
+</section><section id="algorithms" class="slide level2">
+<h2>Algorithms</h2>
+<ul>
+<li>High-order and standard <em>Taylor-Hood</em> elements</li>
+<li>High-order <em>divergence</em> free elements</li>
+<li>Implicit/Explicit time integration<br />
+</li>
+<li>Most critical: Evaluation of the boundary integrals</li>
+</ul>
+</section><section id="results" class="slide level2">
+<h2>Results</h2>
+<p>The reported (converged) characteristic outputs ly within certain confidence intervals <span class="math inline">\(\Delta_I\)</span></p>
+<table>
+<thead>
+<tr class="header">
+<th>test case</th>
+<th>relative size of <span class="math inline">\(\Delta_I\)</span></th>
+<th>critical value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>stationary-2D</td>
+<td><span class="math inline">\(10^{-5}\)</span></td>
+<td><span class="math inline">\(C_L\)</span></td>
+</tr>
+<tr class="even">
+<td>periodic-2D</td>
+<td><span class="math inline">\(10^{-3}\)</span></td>
+<td><span class="math inline">\(C_T\)</span></td>
+</tr>
+<tr class="odd">
+<td>time-dep-2D</td>
+<td><span class="math inline">\(10^{-3}\)</span></td>
+<td><span class="math inline">\(C_L\)</span></td>
+</tr>
+<tr class="even">
+<td>stationary-3D</td>
+<td>(<span class="math inline">\(1\)</span>), <span class="math inline">\(10^{-1}\)</span></td>
+<td><span class="math inline">\(\omega^ { * }\)</span></td>
+</tr>
+</tbody>
+</table>
+</section><section id="code-availability" class="slide level2">
+<h2>Code Availability</h2>
+<p>Full data sets for the results as well as all implementations can be found at</p>
+<blockquote>
+<p><a href="https://doi.org/10.5281/zenodo.3253455">DOI: 10.5281/zenodo.3253455</a></p>
+</blockquote>
+</section></section>
+<section><section id="conclusion" class="titleslide slide level1"><h1>Conclusion</h1></section><section id="conclusion-1" class="slide level2">
+<h2>Conclusion</h2>
+<ul>
+<li><p>Benchmarks are valuable for the assessment of numerical models</p></li>
+<li>The proposed benchmark may qualify as such because of
+<ul>
+<li>reliable data</li>
+<li>setup accessible to standard solvers</li>
+</ul></li>
+<li><p>I learned: Numerical analysis matters.</p></li>
+</ul>
+</section><section id="references" class="slide level2 unnumbered">
+<h2>References</h2>
+<div id="refs" class="references">
+<div id="ref-WahRLHM19">
+<p>Wahl, Henry von, Thomas Richter, Christoph Lehrenfeld, Jan Heiland, and Piotr Minakowski. 2019. “Numerical Benchmarking of Fluid-Rigid Body Interactions.” <em>Computers &amp; Fluids</em>. doi:<a href="https://doi.org/10.1016/j.compfluid.2019.104290">10.1016/j.compfluid.2019.104290</a>.</p>
+</div>
+</div>
+</section></section>
+    </div>
+  </div>
+
+  <script src="https://revealjs.com/lib/js/head.min.js"></script>
+  <script src="https://revealjs.com/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Number of slides away from the current that are visible
+        viewDistance: 15,
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+        height: 960,
+        // Factor of the display size that should remain empty around the content
+        margin: 0.05,
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'https://revealjs.com/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'https://revealjs.com/plugin/zoom-js/zoom.js', async: true },
+              { src: 'https://revealjs.com/plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+    </body>
+</html>

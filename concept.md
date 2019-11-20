@@ -20,12 +20,12 @@ I haven't found a clear definition of what a benchmark is.
 However, here is what I think makes a *numerical example* a
 benchmark
 
-1. **common acceptance as a benchmark** -- there are other publications that
-   discuss the same setup
-2. **practical relevance** -- either in applications or as a testing field for
-   numerical algorithms
-3. **reliable reference data** -- so that others can test their codes and
-   methods against it 
+1. **Common acceptance as a benchmark** -- there are other publications that
+   discuss the same setup.
+2. **Practical relevance** -- either in applications or as a testing field for
+   numerical algorithms.
+3. **Reliable reference data** -- so that others can test their codes and
+   methods against it.
    
 ## What is a Benchmark
 
@@ -40,8 +40,8 @@ Quantitative assessments, evaluate performance:
 
 Examples:
 
- * MOR Benchmark Collection
- * Dongarra
+ * [MOR Benchmark Collection](https://morwiki.mpi-magdeburg.mpg.de/morwiki/index.php/Main_Page)
+ * [LINPACK Benchmark](https://en.wikipedia.org/wiki/LINPACK_benchmarks)
 
 ## Why Benchmarks 
 
@@ -58,7 +58,7 @@ Note that:
 
 ## Fluid Structure Interaction
 
-![Example of a Cylinder with a Tail](pics/fsi2.gif)
+![Example of a cylinder with a tail](pics/fsi2.gif)
 
  * Changing domain.
  * Coupling of Models (and scales).
@@ -99,7 +99,7 @@ Note that:
 ### The flow
 
 \begin{equation*}
-		\rho_f\left(\partial_t v + (v \cdot\nabla)v \right) - \nabla \cdot \sigma(v ,p) = 0, \quad \nabla\cdot v  = 0
+		\rho_f\left(\partial_t v + (v \cdot\nabla)v \right) - \nabla \cdot \sigma(v ,p) = 0, \quad \nabla\cdot v  = 0,
 \end{equation*}
 with the stress-tensor
 \begin{equation*}
@@ -107,7 +107,7 @@ with the stress-tensor
 \end{equation*} 
 and with standard boundary conditions and in particular
 \begin{equation*}
-    v = v_s \quad \text{on } \mathcal I
+    v = v_s, \quad \text{on } \mathcal I,
 \end{equation*}
 where $v_s$ is the solid's velocity at the fluid-solid interface.
 
@@ -129,7 +129,7 @@ with the body's centre of mass $\mathbf c$.
 ## Setups 
 
  * 2D and 3D
- * stationary -- where $\mathbf T=0$ (low *Re*-number)
+ * stationary -- where there is no torque (low *Re*-number)
  * periodic -- a limit cycle (moderate *Re*-number)
  * time dependent -- a start-up period
 
@@ -137,7 +137,7 @@ with the body's centre of mass $\mathbf c$.
 ## Characteristic outputs
 ### for the stationary case
 
-| variable | definition |
+| Variable | Definition |
 | --- | -------- |
 | $C_L$ | lift coefficient(s) | 
 | $C_D$ | drag coefficient(s) | 
@@ -163,7 +163,7 @@ we used
 
 There were 5 independent implementations using established libraries:
 
- * Netgen/NGSolve
+ * [Netgen/NGSolve](https://ngsolve.org/)
  * [FEniCS/dolfin](https://fenicsproject.org/download/)
  * Gascoigne
  * [SciPy](https://www.scipy.org)
@@ -172,7 +172,8 @@ There were 5 independent implementations using established libraries:
 ## Algorithms
 
  * High-order and standard *Taylor-Hood* elements
- * High-order *divergence* free elements
+ * *inf-sup* stable and stabilized equal order elements
+ * High-order *divergence* free and $H^1$ conforming elements
  * Implicit/Explicit time integration   
  * Most critical: Evaluation of the boundary integrals
 
@@ -181,7 +182,7 @@ There were 5 independent implementations using established libraries:
 The reported (converged) characteristic outputs ly within certain confidence
 intervals $\Delta_I$ 
 
-| test case | relative size of $\Delta_I$ | critical value |
+| Test case | Relative size of $\Delta_I$ | Critical value |
 | ----- | ---- | --- |
 | stationary-2D | $10^{-5}$ | $C_L$ |
 | periodic-2D | $10^{-3}$ | $C_T$ |
@@ -197,11 +198,11 @@ Full data sets for the results as well as all implementations can be found at
 # Conclusion
 ## Conclusion
 
-* Benchmarks are valuable for the assessment of numerical models
+* Benchmarks are valuable for the assessment of numerical models.
 
 * The proposed benchmark may qualify as such because of
-    * reliable data 
-    * setup accessible to standard solvers
+    * reliable data,
+    * setup accessible to standard solvers.
 
 * I learned: Numerical analysis matters.
 

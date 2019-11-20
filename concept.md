@@ -58,7 +58,7 @@ Note that:
 
 ## Fluid Structure Interaction
 
-![Example of a Cylinder with a Tail](fsi2.gif)
+![Example of a Cylinder with a Tail](pics/fsi2.gif)
 
  * Changing domain.
  * Coupling of Models (and scales).

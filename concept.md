@@ -4,7 +4,7 @@ author:
 - Henry von Wahl & Thomas Richter & Jan Heiland
 - Christoph Lehrenfeld & Piotr Minakowski
 date: \today
-institute: GAMM-CSE Workshop G\"unzburg, 2019
+institute: GAMM-CSE Workshop G&uuml;zburg, 2019
 bibliography: 
 - fsi-benchmark-talk.bib
 # - bib-dae-hinf.bib

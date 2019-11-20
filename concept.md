@@ -174,6 +174,7 @@ There were 5 independent implementations using established libraries:
  * High-order and standard *Taylor-Hood* elements
  * *inf-sup* stable and stabilized equal order elements
  * High-order *divergence* free and $H^1$ conforming elements
+ * Hybrid Discontinous Galerkin methods
  * Implicit/Explicit time integration   
  * Most critical: Evaluation of the boundary integrals
 

@@ -1,4 +1,4 @@
-pandoc concept.md -o index.html --filter pandoc-citeproc -t revealjs --slide-level=2 -s -H <(echo '\['; cat def.tex; echo '\]')  --mathjax='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' -V revealjs-url=https://revealjs.com -V theme=solarized -V viewDistance=15 -V width=1280 -V height=720 -V margin=0.05 -V navigationMode="linear"
+pandoc concept.md -o index.html --filter pandoc-citeproc -t revealjs --slide-level=2 -s --mathjax='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' -V revealjs-url=https://revealjs.com -V theme=solarized -V viewDistance=15 -V width=1280 -V height=720 -V margin=0.05 -V navigationMode="linear"
 # pandoc concept.md -o index.html --filter pandoc-citeproc -t revealjs --slide-level=2 -s -H <(echo '\['; cat def.tex; echo '\]')  --mathjax='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' -V revealjs-url=https://revealjs.com -V theme=solarized -V viewDistance=15 -V width=1280 -V height=720 -V margin=0.1
 pandoc concept.md --filter pandoc-citeproc -t beamer -o base-theme-slides.pdf -H def.tex
 

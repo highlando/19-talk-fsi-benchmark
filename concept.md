@@ -3,7 +3,7 @@ title: A benchmark for fluid rigid body interaction with standard CFD packages
 author: 
 - Henry von Wahl & Thomas Richter & Jan Heiland
 - Christoph Lehrenfeld & Piotr Minakowski
-date: \today
+date: 21 November 2019
 institute: GAMM-CSE Workshop G&uuml;zburg, 2019
 bibliography: 
 - fsi-benchmark-talk.bib

@@ -66,7 +66,7 @@
 <blockquote>
 <p>Are the computations <strong>correct</strong>?</p>
 </blockquote>
-<p>Example: <a href="www.featflow.de/en/benchmarks/cfdbenchmarking/flow/">Flow Past a Cylinder</a> by Schäfer&amp;Turek</p>
+<p>Example: <a href="http://www.featflow.de/en/benchmarks/cfdbenchmarking.html">FEATFLOW CFD Benchmarking project</a></p>
 <p>Note that:</p>
 <blockquote>
 <p>The more complex the model is, the more necessary are benchmarks <strong>but</strong> the more difficult are benchmark definitions.</p>
@@ -147,7 +147,17 @@ where <span class="math inline">\(J\)</span> is the body's moment of inertia and
 <li>time dependent -- a start-up period</li>
 </ul>
 </section><section id="characteristic-outputs" class="slide level2">
-<h2>Characteristic outputs</h2>
+<h2>Characteristic Outputs</h2>
+<h3 id="how-to-report-the-results">how to report the results</h3>
+<p>To assess <em>the truth</em> the reported data should be</p>
+<ul>
+<li>independent of numerical setup (like the mesh or the scheme),</li>
+<li>dimensionless and suitably parametrized (like through the <em>Reynolds number</em>),</li>
+<li>characteristic for the setup, and</li>
+<li>meaningful for, say, applications.</li>
+</ul>
+</section><section id="characteristic-outputs-1" class="slide level2">
+<h2>Characteristic Outputs</h2>
 <h3 id="for-the-stationary-case">for the stationary case</h3>
 <table>
 <thead>
@@ -181,11 +191,11 @@ where <span class="math inline">\(J\)</span> is the body's moment of inertia and
 </table>
 </section><section class="slide level2">
 
-<h3 id="in-the-periodic-case">in the periodic case,</h3>
-<p>we used</p>
+<h3 id="in-the-periodic-case">in the periodic case</h3>
+<p>We used</p>
 <ul>
-<li>the <em>Strouhal number</em> to characterize the frequency</li>
-<li>minima, maxima of <span class="math inline">\(C_D\)</span>, <span class="math inline">\(C_L\)</span>, <span class="math inline">\(C_T\)</span>, and <span class="math inline">\(\omega^{ * }\)</span></li>
+<li>the <em>Strouhal number</em> to characterize the frequency,</li>
+<li>minima, maxima of <span class="math inline">\(C_D\)</span>, <span class="math inline">\(C_L\)</span>, <span class="math inline">\(C_T\)</span>, and <span class="math inline">\(\omega^{ * }\)</span>,</li>
 <li>and <span class="math inline">\(\Delta_p(t^ * )\)</span> -- at the middle of a period.</li>
 </ul>
 </section></section>
@@ -202,17 +212,16 @@ where <span class="math inline">\(J\)</span> is the body's moment of inertia and
 </section><section id="algorithms" class="slide level2">
 <h2>Algorithms</h2>
 <ul>
-<li>High-order and standard <em>Taylor-Hood</em> elements</li>
-<li><em>inf-sup</em> stable and stabilized equal order elements</li>
-<li>High-order <em>divergence</em> free and <span class="math inline">\(H^1\)</span> conforming elements</li>
-<li>Hybrid Discontinous Galerkin methods</li>
-<li>Implicit/Explicit time integration<br />
-</li>
-<li>Most critical: Evaluation of the boundary integrals</li>
+<li><em>inf-sup</em> stable and stabilized equal order elements.</li>
+<li>High-order and standard <em>Taylor-Hood</em> (<span class="math inline">\(P_2-P_1)\)</span> elements.</li>
+<li>Divergence conforming elements.</li>
+<li>Hybrid Discontinous Galerkin methods.</li>
+<li>Implicit/Explicit time integration.</li>
+<li>Most critical: Evaluation of the boundary integrals.</li>
 </ul>
 </section><section id="results" class="slide level2">
 <h2>Results</h2>
-<p>The reported (converged) characteristic outputs ly within certain confidence intervals <span class="math inline">\(\Delta_I\)</span></p>
+<p>The reported (converged) characteristic outputs ly within certain confidence intervals <span class="math inline">\(\Delta_I\)</span>:</p>
 <table>
 <thead>
 <tr class="header">
@@ -244,6 +253,15 @@ where <span class="math inline">\(J\)</span> is the body's moment of inertia and
 </tr>
 </tbody>
 </table>
+</section><section id="discussion" class="slide level2">
+<h2>Discussion</h2>
+<ul>
+<li>The 2D simulations gave reliable results.</li>
+<li>Also the stationary 3D case (at least in absolute numbers).</li>
+<li>The time-dependent 3D results were inconclusive.</li>
+<li>We did not include them in the report.</li>
+<li>Conflict with another benchmark property: <em>the numerical setup should be challenging.</em></li>
+</ul>
 </section><section id="code-availability" class="slide level2">
 <h2>Code Availability</h2>
 <p>Full data sets for the results as well as all implementations can be found at</p>

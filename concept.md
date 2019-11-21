@@ -49,7 +49,7 @@ Qualitive assessments, evaluate confidence:
 
 > Are the computations **correct**?
 
-Example: [Flow Past a Cylinder](www.featflow.de/en/benchmarks/cfdbenchmarking/flow/) by Sch&auml;fer&Turek
+Example: [FEATFLOW CFD Benchmarking project](http://www.featflow.de/en/benchmarks/cfdbenchmarking.html)
 
 Note that:
 
@@ -133,8 +133,18 @@ with the body's centre of mass $\mathbf c$.
  * periodic -- a limit cycle (moderate *Re*-number)
  * time dependent -- a start-up period
 
+## Characteristic Outputs
+### how to report the results
 
-## Characteristic outputs
+To assess *the truth* the reported data should be
+
+ * independent of numerical setup (like the mesh or the scheme),
+ * dimensionless and suitably parametrized (like through the *Reynolds number*),
+ * characteristic for the setup, and
+ * meaningful for, say, applications.
+
+
+## Characteristic Outputs
 ### for the stationary case
 
 | Variable | Definition |
@@ -148,12 +158,12 @@ with the body's centre of mass $\mathbf c$.
 
 ---
 
-### in the periodic case,
+### in the periodic case
 
-we used 
+We used 
 
- * the *Strouhal number* to characterize the frequency
- * minima, maxima of $C_D$, $C_L$, $C_T$, and $\omega^{ * }$
+ * the *Strouhal number* to characterize the frequency,
+ * minima, maxima of $C_D$, $C_L$, $C_T$, and $\omega^{ * }$,
  * and $\Delta_p(t^ * )$ -- at the middle of a period.
 
 
@@ -171,17 +181,17 @@ There were 5 independent implementations using established libraries:
 
 ## Algorithms
 
- * High-order and standard *Taylor-Hood* elements
- * *inf-sup* stable and stabilized equal order elements
- * High-order *divergence* free and $H^1$ conforming elements
- * Hybrid Discontinous Galerkin methods
- * Implicit/Explicit time integration   
- * Most critical: Evaluation of the boundary integrals
+ * *inf-sup* stable and stabilized equal order elements.
+ * High-order and standard *Taylor-Hood* ($P_2-P_1)$ elements.
+ * Divergence conforming elements.
+ * Hybrid Discontinous Galerkin methods.
+ * Implicit/Explicit time integration.
+ * Most critical: Evaluation of the boundary integrals.
 
 ## Results
 
 The reported (converged) characteristic outputs ly within certain confidence
-intervals $\Delta_I$ 
+intervals $\Delta_I$:
 
 | Test case | Relative size of $\Delta_I$ | Critical value |
 | ----- | ---- | --- |
@@ -189,6 +199,14 @@ intervals $\Delta_I$
 | periodic-2D | $10^{-3}$ | $C_T$ |
 | time-dep-2D | $10^{-3}$ | $C_L$ |
 | stationary-3D | ($1$), $10^{-1}$ | $\omega^ { * }$ |
+
+## Discussion
+ 
+ * The 2D simulations gave reliable results.
+ * Also the stationary 3D case (at least in absolute numbers).
+ * The time-dependent 3D results were inconclusive.
+ * We did not include them in the report.
+ * Conflict with another benchmark property: *the numerical setup should be challenging.*
 
 ## Code Availability
 

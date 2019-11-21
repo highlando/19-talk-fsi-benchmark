@@ -133,8 +133,7 @@ with the body's centre of mass $\mathbf c$.
  * periodic -- a limit cycle (moderate *Re*-number)
  * time dependent -- a start-up period
 
-## Characteristic Outputs
-### how to report the results
+## how to report the results
 
 To assess *the truth* the reported data should be
 

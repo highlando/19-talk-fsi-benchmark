@@ -1,0 +1,100 @@
+\documentclass[%
+aspectratio=43 % the default if ommited
+%aspectratio=169 %switches the page layout to 16:9 format
+,table % required for colored tables (passes the table option to xcolor)
+]{beamer}
+
+\usepackage{longtable,booktabs}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+% beamertheme with options
+\mode<presentation>
+{
+  \usetheme[%
+  ,english            % change the language of logos and footline to english,
+   ,CSC
+   ,layoutone             % Layout with fancy graphics and color gradient
+  % ,layouttwo            % Layout with blueish box (the default)
+  % ,layoutthree          % Layout with fancy title graphics of choice
+                          % use \pgfdeclareimage{title}{} to define it as below.
+  ,groupnameinhead        % Adds the full group name to the logo in the header
+  %,compacthead           % moves the subtitle below the frametitle in the head
+                          % instead of in the slide area
+  ,adjustframetitle      % automatically fit oversized frametitles horizontally
+  %,hideaffiliationheader % hides the word Affiliations: or Zugehörigkeiten: on
+                          % the title page
+  %,hidefundingheader     % hides the words "suppoted by" or "gefördert durch"
+                          % above the funding logos 
+   ,serifmath             % switch to serif math if desired
+  % ,ovgu                 % adds the OVGU Logo to the header if no group logo is
+                          % used. 
+  % ,noauthor             % switches off the display of the author's name in the
+                          % footline 
+  , titleinfoot           % show the short title in the footline
+  , movepagenums          % make the footline more symmetric in layout
+  % , hidepagenums        % do not print page numbers in footline
+  % ,navsymbols           % beamer navigation symbols are off by default and can
+                          % be activated using this option
+  % ,fullscreen           % try to display the PDF in fullscreen mode by default
+   ,singlepage            % try to display teh PDF in single page (rather than
+                          % continuous view) mode by default
+  % ,alertbold            % show alerted text in bold face (this option will
+                          % make \alert cause errors in math mode)
+  % , twenty              % 20 years logo (kept for backward compatibility!)
+  ]{mpi2015}            
+}
+
+
+% Define the graphics used on the title page in layout 1:
+\pgfdeclareimage[width=\fadewidth,height=\fadeheight]{fadepicture}{MPI_outside.jpg}
+
+% Define the graphics used on the title page in layout 3:
+\pgfdeclareimage[width=.6\linewidth,height=.45\linewidth]{title}{MPI_outside.jpg}
+
+\title{A benchmark for fluid rigid body interaction with standard CFD packages}
+\author{Henry von Wahl \& Thomas Richter \& Jan Heiland \and Christoph Lehrenfeld \& Piotr Minakowski}
+\date{GAMM CSE -- 21 November 2019}
+
+\begin{document}
+% title page
+\maketitle % use maketitle to make the title frame
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% content - example
+
+
+\input{slides-body}
+
+\section*{References}
+\begin{frame}[allowframebreaks]{\secname}
+  \nocite*
+  \bibliographystyle{abbrv}
+  \bibliography{fsi-benchmark-talk}
+\end{frame}
+
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% some help for emacs tex user
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t 
+%%% TeX-PDF-mode:t
+%%% auto-fill-function:nil
+%%% mode:auto-fill
+%%% flyspell-mode:nil
+%%% mode:flyspell
+%%% ispell-local-dictionary: "en_US"
+%%% End: 
+     
+

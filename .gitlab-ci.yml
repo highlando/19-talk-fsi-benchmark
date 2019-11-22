@@ -12,6 +12,7 @@ build_docs:
   artifacts:
     # Attach all untracked files (e.g. files that were recently created and not yet committed to git) as artifacts.
     # These are the files you then download after the job has finished.
+    when: always
     untracked: true
   only:
     # Only run on the master branch

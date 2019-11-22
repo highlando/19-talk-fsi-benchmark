@@ -8,8 +8,9 @@ build_docs:
     - apt-get install -y pandoc-citeproc
   script:
     - source makethedoc.sh
-    - rm *.log *.aux *.nav *.snm *.toc
   allow_failure: true
+  after_script:
+    - rm *.log *.aux *.nav *.snm *.toc
   artifacts:
     # Attach all untracked files (e.g. files that were recently created and not yet committed to git) as artifacts.
     # These are the files you then download after the job has finished.

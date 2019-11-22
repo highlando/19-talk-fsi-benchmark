@@ -8,6 +8,7 @@ build_docs:
     - apt-get install -y pandoc-citeproc
   script:
     - source makethedoc.sh
+    - latexmk -c
   allow_failure: true
   artifacts:
     # Attach all untracked files (e.g. files that were recently created and not yet committed to git) as artifacts.

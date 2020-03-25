@@ -309,20 +309,17 @@ where <span class="math inline">\(J\)</span> is the body's moment of inertia and
         height: 960,
         // Factor of the display size that should remain empty around the content
         margin: 0.05,
-        multiplex: {
-            secret: null,
-            id: 'ca2a19a4c20f2a25', // Obtained from socket.io server
-            url: 'https://reveal-js-multiplex-ccjbegmaii.now.sh' // Location of socket.io server
-        },
-
-        // Optional reveal.js plugins
-        dependencies: [
-          { src: 'https://revealjs.com/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-          { src: 'https://revealjs.com/plugin/zoom-js/zoom.js', async: true },
-          { src: 'https://revealjs.com/plugin/notes/notes.js', async: true },
-          { src: 'https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js', async: true },
-		  { src: 'plugin/multiplex/client.js', async: true }
-        ]
+	multiplex: {
+		url: 'https://reveal-multiplex-multiplex.apps.us-east-2.starter.openshift-online.com//',
+		id: '18133060e652e930',
+		secret: Reveal.getQueryHash().s || null
+	},
+	dependencies: [
+        	{ src: 'https://cdn.socket.io/socket.io-2.0.3.js', async: true },
+        	{ src: Reveal.getQueryHash().s ?
+		  'plugin/multiplex/master.js' :
+		  'plugin/multiplex/client.js', async: true }
+    ]
       });
     </script>
     </body>

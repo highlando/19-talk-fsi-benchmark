@@ -1,0 +1,18 @@
+image: local:latex
+
+build_docs:
+  before_script:
+    # Download and install pandoc 
+    - apt-get update -y
+    - apt-get install -y pandoc
+    - apt-get install -y pandoc-citeproc
+  script:
+    - source makethedoc.sh
+  allow_failure: true
+  after_script:
+    - rm *.log *.aux *.nav *.snm *.toc
+  artifacts:
+    when: always
+    untracked: true
+  only:
+    - master

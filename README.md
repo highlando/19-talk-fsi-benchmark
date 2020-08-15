@@ -1,3 +1,18 @@
+---
+Author:
+- Jan Heiland
+- Henry von Wahl
+- Thomas Richter
+- Christoph Lehrenfeld
+- Piotr Minakowski
+Workshop: GAMM CSE Workshop
+Date: November 21 - 22, 2019
+Place: Gunzburg, Germany
+Title: A benchmark for fluid rigid body interaction with standard CFD packages
+Duration: 25 (+5) min
+Language: English
+---
+
 The [slides go here](https://janheiland.de/19-talk-fsi-benchmark/).
 
 The base file is the `concept.md`.

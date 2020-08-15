@@ -1,7 +1,7 @@
 pandoc concept.md -o index.html \
     --filter pandoc-citeproc -t revealjs --slide-level=2 -s \
     --mathjax='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' \
-    -V revealjs-url=https://unpkg.com/reveal.js@^4/ \
+    -V revealjs-url=https://unpkg.com/reveal.js@3.9.2/ \
     -V theme=solarized -V hash=true \
     -V viewDistance=15 -V width=1280 -V height=960 -V margin=0.05
 
